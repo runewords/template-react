@@ -4,7 +4,7 @@
   "description": "react",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --open",
+    "start": "NODE_ENV=development node ./scripts/start.js",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js"
   },
   "repository": {
@@ -28,5 +28,12 @@
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "mobx": "^5.9.4",
+    "mobx-react": "^5.4.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
