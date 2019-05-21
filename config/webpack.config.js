@@ -1,4 +1,25 @@
+const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const env = process.env.NODE_ENV;
+
+// plugins
+let plugins = [
+    new HtmlWebpackPlugin({
+        title: 'output management',
+        template: __dirname + '/../template/index.html'
+    })
+];
+if(env === 'development') {
+    plugins = plugins.concat([
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
+    ])
+} else {
+    plugins = plugins.unshift(new CleanWebpackPlugin(['dist']));
+}
 
 module.exports = {
     // 开发模式
@@ -7,10 +28,14 @@ module.exports = {
     entry: {
         app: './src/main.js'
     },
+    // 开发工具
+    devtool: env === 'development' ? 'inline-source-map' : false,
     // 输出
     output: {
-        filename: 'bundle.js',
-        path: __dirname + '/dist'
+        filename: '[name].bundle.js',
+        path: __dirname + '/dist',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
     },
     // 对各种文件类型(模块)进行处理
     module: {
@@ -23,9 +48,5 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: __dirname + '/../template/index.html'
-        })
-    ]
+    plugins
 }
