@@ -9,7 +9,7 @@ const env = process.env.NODE_ENV;
 let plugins = [
     new HtmlWebpackPlugin({
         title: 'output management',
-        template: 'public/index.html'
+        template: 'template/index.html'
     })
 ];
 if(env === 'development') {
@@ -37,4 +37,23 @@ module.exports = {
         hotOnly: false // 默认开启, 不好使啊
     },
     plugins,
+    module: {
+        loaders: [
+            {
+                test: /\.jsx?$/i,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015', 'react', 'stage-0'],
+                    plugins: ['transform-remove-strict-mode']
+                }
+            },
+        ]
+    },
+    // externals: {
+    //     'react': 'window.React',
+    //     'react-dom': 'window.ReactDOM',
+    //     'react-router': 'window.ReactRouter',
+    //     'react-router-dom': 'window.ReactRouterDOM',
+    // },
 };

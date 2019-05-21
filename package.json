@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development node ./scripts/start.js",
-    "build": "NODE_ENV=production webpack --config ./webpack.config.js"
+    "build": "NODE_ENV=production node ./scripts/build.js"
   },
   "repository": {
     "type": "git",

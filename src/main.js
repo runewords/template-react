@@ -1,12 +1,4 @@
-import _ from 'lodash';
+import ReactDOM from 'react-dom';
+import App from './app';
 
-function component() {
-    var element = document.createElement('div');
-
-    // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
-    element.innerHTML = _.join(['Hello2', 'webpack1111'], ' ');
-
-    return element;
-}
-
-document.body.appendChild(component());
+ReactDOM.render(<App/>, document.getElementById('wrap'));
